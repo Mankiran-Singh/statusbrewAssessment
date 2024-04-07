@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Color Picker using ControlValueAccessor</h1>
+    <mat-card class="zone zone-value">
+        <div class="row h-24" [style.background-color]="color">HEX: {{ color }}</div>
+    </mat-card>
+    
+    <mat-card class="zone zone-picker">
+        <div class="grid grid-cols-3 gap-2">
+            <div *ngFor="let color of colors; let i = index"
+                 (click)="selectColor(color)"
+                 [class.ring-2]="focusedIndex === i"
+                 [class.ring-offset-2]="focusedIndex === i"
+                 [class.ring-blue-500]="focusedIndex === i"
+                 class="w-10 h-10 rounded-full cursor-pointer"
+                 [style.backgroundColor]="color"
+                 tabindex="0"
+                 (keydown)="handleKeydown($event, color)">
+            </div>
+        </div>
+    </mat-card>
+</div>

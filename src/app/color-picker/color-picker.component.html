@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Color Picker using Material UI</h1>
+    <mat-card class="zone zone-value">
+        <div class="row content-center h-24" [style.background-color]="colorCtr.value?.rgba">HEX: {{colorCtr.value?.hex}}</div>
+        <div class="row content-center h-24">RGBA: {{colorCtr.value?.rgba}}</div>
+    </mat-card>
+    
+    <mat-card class="zone zone-picker">
+        <mat-form-field>
+            <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" [disabled]="disabled">
+            <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+            <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+        </mat-form-field>
+    </mat-card>
+    
+    <mat-card class="zone zone-config">
+        <div class="config-wrapper">
+            <span class="label">disabled (Default: false) </span>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="disabled">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option.value">
+                    {{option.label}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    
+        <div class="config-wrapper">
+            <span class="label">touchUi (Default: false) </span>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="touchUi">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option.value">
+                    {{option.label}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    
+        <div class="config-wrapper">
+            <span class="label">color (Default: primary) </span>
+            <mat-form-field>
+                <mat-label>Select color</mat-label>
+                <mat-select [(ngModel)]="color">
+                    <mat-option *ngFor="let item of listColors" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-card>
+</div>
+<app-color-picker1></app-color-picker1>
